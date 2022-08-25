@@ -1,0 +1,15 @@
+.footer {
+	display: grid;
+	grid-template-columns: 1fr auto auto;
+	gap: 40px;
+	color: var(--white);
+	font-size: 16px;
+	line-height: 1;
+
+	background: var(--primary);
+	padding: 25px 30px;
+}
+
+.footer a:hover {
+	color: var(--gray-light)
+}

@@ -1,11 +1,14 @@
-import React from 'react';
-import { Htag } from '../components';
+import React from "react";
+import { Htag, Rating } from "../components";
+import { withLayout } from "../layout/Layout";
 
-export default function Home(): JSX.Element {
-
-  return (
-   <div>
-    <Htag tag='h1'>counter</Htag>
-   </div> 
-  );
+function Home(): JSX.Element {
+    return (
+        <>
+            <Htag tag="h1">Rating</Htag>
+            <Rating rating={4} isEditable={true} />
+        </>
+    );
 }
+
+export default withLayout(Home);
