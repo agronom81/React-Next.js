@@ -1,4 +1,4 @@
-import { GetStaticPathsContext, GetStaticProps, GetStaticPropsContext } from "next";
+import { GetStaticPaths, GetStaticPathsContext, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
 import { withLayout } from "../../layout/Layout";
 import axios from "axios";
@@ -14,19 +14,24 @@ interface CourseProps extends Record<string, unknown> {
 	products: ProductModel[];
 }
 
+const firstCategory = 0;
+
 function Course({ menu, firstCategory, page, products }: CourseProps): JSX.Element {
-	return (
-		<>
-			<ul>
-				{menu.map((m) => (
-					<li key={m._id.secondCategory}>{m._id.secondCategory}</li>
-				))}
-			</ul>
-		</>
-	);
+	return <></>;
 }
 
 export default withLayout(Course);
+
+export const getStaticPath: GetStaticPaths = async () => {
+	const { data: menu } = await axios.post<MenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + "/api/top-page/find", {
+		firstCategory,
+	});
+
+	return {
+		paths: menu.flatMap((m) => m.pages.map((p) => "/courses" + p.alias)),
+		fallback: true,
+	};
+};
 
 export const getStaticProps: GetStaticProps<CourseProps | {}> = async ({
 	params,
