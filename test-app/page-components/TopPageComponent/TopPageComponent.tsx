@@ -1,7 +1,7 @@
 import { TopPageComponentProps } from "./TopPageComponent.props";
 import styles from "./TopPageComponent.module.css";
 import cn from "classnames";
-import { Htag, Tag } from "../../components";
+import { Card, HhData, Htag, Tag } from "../../components";
 
 export const TopPageComponent = ({ page, products, firstCategory }: TopPageComponentProps): JSX.Element => {
 	return (
@@ -16,6 +16,13 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
 				<span>Sort</span>
 			</div>
 			<div>{products && products.map((p) => <div key={p._id}>{p.title}</div>)}</div>
+			<div className={styles.hhTitle}>
+				<Htag tag="h2">Vacation - {page.category}</Htag>
+				<Tag color="red" size="m">
+					example.com
+				</Tag>
+			</div>
+			<HhData {...page.hh} />
 		</div>
 	);
 };
