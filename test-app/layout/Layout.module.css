@@ -35,9 +35,9 @@
 				"body"
 				"footer";
 	}
-	
+
 	.sidebar {
-		display: none;
+		display: none!important;
 	}
 
 	.header {
